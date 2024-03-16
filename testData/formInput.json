@@ -1,0 +1,43 @@
+[
+    {
+      "testName": "Test 1 - Fill Input",
+      "firstName": "John",
+      "age": "30",
+      "isStudent": true,
+      "expectedFirstName": "John",
+      "expectedAge": "30",
+      "expectedIsStudent": "Yes"
+    },
+
+    {
+      "testName": "Test 1 - Negative test",
+      "firstName": "Alice",
+      "age": "25",
+      "isStudent": false,
+      "expectedFirstName": "Alice",
+      "expectedAge": "25",
+      "expectedIsStudent": "No"
+    },
+
+    {
+      "testName": "Test 1 - Invalid age",
+      "firstName": "Alice",
+      "age": "-2",
+      "isStudent": false,
+      "expectedFirstName": "Alice",
+      "expectedAge": "-2",
+      "expectedIsStudent": "No",
+      "expectedErrorText": "Invalid age."
+    },
+
+    {
+      "testName": "Test 1 - Empty field",
+      "firstName": "",
+      "age": "-2",
+      "isStudent": false,
+      "expectedFirstName": "",
+      "expectedAge": "-2",
+      "expectedIsStudent": "No",
+      "expectedErrorText": "Please fill in all fields."
+    }
+  ]
