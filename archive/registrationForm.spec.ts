@@ -1,6 +1,5 @@
-import { test, expect } from "../pageObjects/PageFixture";
-// import {test, expect} from "./pageObjects/PageFixture"
-import testData from "../testData/formInput.json";
+import {test, expect} from "./pageObjects/PageFixture"
+import testData from "./testData/formInput.json";
 
 // let url = "file:///Users/amber/Documents/Testing/PlaywrightDemo/index.html";
 
