@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": "../PlaywrightDemo/",
+        "paths": {
+            "@tests/*":["tests/*"],
+            "@pages/*": ["pageObjects/pages/*"],
+            "@components/*":["pageObjects/components/*"],
+            "@pageFixture":["pageObjects/pageFixture.ts"],
+            "@basePage":["pageObjects/basePage.ts"],
+            "@basePageComponent":["pageObjects/basePageComponent.ts"]
+        }
+    }
+}
