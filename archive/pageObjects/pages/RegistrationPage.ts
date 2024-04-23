@@ -2,7 +2,7 @@ import { Locator, Page } from "@playwright/test";
 import { BasePage } from "../BasePage";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
-import { Env } from "../../tests/config/Env";
+import { Env } from "../../../tests/config/Env";
 // import { RegistrationForm } from "../components/RegistrationForm";
 
 export class RegistrationPage extends BasePage {
