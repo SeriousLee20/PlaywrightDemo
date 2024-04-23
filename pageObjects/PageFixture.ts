@@ -1,14 +1,14 @@
 import { test as base} from "@playwright/test";
-import { RegistrationForm } from "./pages/RegistrationForm";
+import {RegistrationPage} from "./pages/RegistrationPage"
 
 export type PageObjects = {
-    registrationForm: RegistrationForm
+    registrationPage: RegistrationPage
 }
 
 export const test = base.extend<PageObjects>({
-    registrationForm: async({page}, use) =>{
-        const registrationForm = new RegistrationForm(page);
-        await use(registrationForm);
+    registrationPage: async({page}, use) =>{
+        const registrationPage = new RegistrationPage(page);
+        await use(registrationPage);
     }
 })
 

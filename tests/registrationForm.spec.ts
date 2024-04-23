@@ -1,42 +1,82 @@
 import { test, expect } from "../pageObjects/PageFixture";
-import * as testData from "../testData/formInput.json";
+import testData from "../testData/formInput.json";
 
-let url = "file:///Users/amber/Documents/Testing/PlaywrightDemo/index.html";
+// let url = "file:///Users/amber/Documents/Testing/PlaywrightDemo/index.html";
 
 test.describe("Testing Registration form", () => {
   test.beforeEach(
     "Go to registration form page",
-    async ({ registrationForm }) => {
-      await registrationForm.open();
+    async ({ registrationPage }) => {
+      await registrationPage.open();
     }
   );
 
-  test("Registration form test wrapper", async ({ registrationForm }) => {
-    for (const data of Object.values(testData)) {
-      if (data.testName) {
-        await test.step(data.testName, async () => {
-          await registrationForm.fillFirstName(data.firstName);
-          await registrationForm.fillAge(data.age);
-          await registrationForm.checkIsStudent(data.isStudent);
-          await registrationForm.applyData();
+  test("Validate page title", async ({ page }) => {
+    await expect(page).toHaveTitle('Playwright Demo Page');
+    // await page.locator("#apply-data").click({button: 'right'});
+
+    // page.on('dialog', dialog =>{
+    //   expect(dialog.type()).toEqual('alert|confirm|prompt');
+    //   expect(dialog.message()).toBe('');
+    //   dialog.accept();
+    // })
+
+    // const [popup] = await Promise.all([
+    //   page.waitForEvent('popup'),
+    //   page.click('#open-popup')
+    // ]);
+    // await page.waitForLoadState();
+    // await page.close();
+
+  });
+
+  // test("Registration form test wrapper", async ({ registrationPage }) => {
+  testData.forEach(async (data) => {
+    // for (const data of Object.values(testData)) {
+    if (data.testName) {
+      test(data.testName, async ({ registrationPage }) => {
+        await registrationPage.fillFirstName(data.firstName);
+        await registrationPage.fillAge(data.age);
+        await registrationPage.checkIsStudent(data.isStudent);
+        await registrationPage.applyData();
 
         //   console.log(data.isStudent)
-          if(data.age && data.firstName){
-            if(parseInt(data.age.trim()) <= 0){
-                expect(await registrationForm.getTextContent(registrationForm.invalidAgeError)).toBe(data.expectedErrorText);
-            }else{
-                let isStudent = await registrationForm.getTextContent(registrationForm.displayIsStudentSelector);
-                console.log('1', isStudent);
-                expect(await registrationForm.getTextContent(registrationForm.displayFirstNameSelector)).toBe(data.expectedFirstName);
-                expect(await registrationForm.getTextContent(registrationForm.displayAgeSelector)).toBe(data.expectedAge);
-                expect(await registrationForm.getTextContent(registrationForm.displayIsStudentSelector)).toBe(data.expectedIsStudent);
-            }
-          }else{
-            expect(await registrationForm.getTextContent(registrationForm.emptyFieldError)).toBe(data.expectedErrorText);
+        if (data.age && data.firstName) {
+          if (parseInt(data.age.trim()) <= 0) {
+            expect(
+              await registrationPage.getTextContent(
+                registrationPage.invalidAgeError
+              )
+            ).toBe(data.expectedErrorText);
+          } else {
+            // let isStudent = await registrationPage.getTextContent(registrationPage.displayIsStudentLine);
+            // console.log('1', isStudent);
+            expect(
+              await registrationPage.getTextContent(
+                registrationPage.displayFirstNameLine
+              )
+            ).toBe(data.expectedFirstName);
+            expect(
+              await registrationPage.getTextContent(
+                registrationPage.displayAgeLine
+              )
+            ).toBe(data.expectedAge);
+            expect(
+              await registrationPage.getTextContent(
+                registrationPage.displayIsStudentLine
+              )
+            ).toBe(data.expectedIsStudent);
           }
-        });
-      }
+        } else {
+          expect(
+            await registrationPage.getTextContent(
+              registrationPage.emptyFieldError
+            )
+          ).toBe(data.expectedErrorText);
+        }
+      });
     }
+    // }
   });
+  // });
 });
-
